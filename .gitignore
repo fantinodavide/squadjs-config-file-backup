@@ -1,0 +1,4 @@
+**.*
+!config-file-backup.js
+!README.MD
+!.gitignore
