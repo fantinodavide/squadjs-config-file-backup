@@ -1,5 +1,5 @@
 import DiscordBasePlugin from './discord-base-plugin.js';
-import { MessageAttachment, WebhookClient } from "discord.js";
+import { AttachmentBuilder, WebhookClient } from "discord.js";
 import path from 'path';
 import { createGzip } from 'zlib';
 import { Stream, pipeline } from 'stream';
@@ -96,7 +96,7 @@ export default class ConfigFileBackup extends DiscordBasePlugin {
 
         await this.sendDiscordMessage({
             files: [
-                new MessageAttachment(file.buffer, file.fileName.replace(/[^a-z\d\s\.\_]/gi, '').split(/\s/).filter(p => p != "").join('_'))
+                new AttachmentBuilder(file.buffer, { name: file.fileName.replace(/[^a-z\d\s\.\_]/gi, '').split(/\s/).filter(p => p != "").join('_') })
             ]
         });
     }
